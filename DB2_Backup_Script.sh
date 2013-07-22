@@ -1,6 +1,6 @@
 #!/bin/sh
 #----------------------------------------------------------------------#
-# Script Name   : db2_backup.sh
+# Sript Name   : db2_backup.sh
 # Author        : VLN Manohar Viswanatha
 # Company       : Radiant Info Systems
 # Date Written  : Feb 2013
