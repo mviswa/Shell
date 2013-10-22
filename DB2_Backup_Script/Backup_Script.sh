@@ -26,7 +26,7 @@ echo -e "--------------------------------------------------\n" | tee –a  /path/b
  
 # Check if the backup already exists else take a backup 
 
-if [ -f /path/DB-NAME.0.db2inst1.NODE0000.CATN0000.`date +%Y%m%d`* ] ; then
+if [ -f /path/DB-NAME.0.db2inst1.NODE0000.CATN0000.`date +%Y%m%d`* ] ; then 
         echo -e "The backup for this `date +%Y-%m-%d` already exists " | tee –a  /path/backup_logs.out
 		exit 2
 else

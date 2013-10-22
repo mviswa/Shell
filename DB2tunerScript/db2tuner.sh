@@ -1,6 +1,6 @@
 #!/bin/sh
 
-clear 
+clear
 
 
 #Colors
@@ -35,26 +35,25 @@ db2path=`which db2`
 
 #echo -e "--------------------Product Information------------------------------------------------\n"
 #echo -e "${BRIGHT}DB2 VERSION\tFIXPACK\t\tINSTALLED ON\t\tPATH${NORMAL}"
-#echo -e "${BRIGHT}$VERSION\t\t   $FIXPACK\t$INSTDTE\t$INSTPATH${NORMAL}" 
+#echo -e "${BRIGHT}$VERSION\t\t   $FIXPACK\t$INSTDTE\t$INSTPATH${NORMAL}"
 #echo -e "${BRIGHT}INSTALLED ON : $INSTDTE${NORMAL}"
 #echo -e "${BRIGHT}DB2 VERSION : $VERSION${NORMAL}"
 #echo -e "${BRIGHT}FIXPACK : $FIXPACK${NORMAL}"
 #echo -e "${BRIGHT}INSTALLATION PATH : $INSTPATH${NORMAL}"
 
 #Selecting database
-:<<abcd
-dblist=`$db2path "list db directory"|grep "Database name"|wc -l`
+#dblist=`$db2path "list db directory"|grep "Database name"|wc -l`
 
-if [ $dblist != 1 ];
-then
-echo -e "\nYou have more than 1 database in this instance\n"
-$db2path "list db directory"|grep "Database name"|awk '{print $4}'
-printf "\n"
-read -p "Select a database : " dbname
-else
-dbname=`$db2path "list db directory"|grep "Database name"|awk '{print $4}'`
-fi
-abcd
+#if [ $dblist != 1 ];
+#then
+#echo -e "\nYou have more than 1 database in this instance\n"
+#$db2path "list db directory"|grep "Database name"|awk '{print $4}'
+#printf "\n"
+#read -p "Select a database : " dbname
+#else
+#dbname=`$db2path "list db directory"|grep "Database name"|awk '{print $4}'`
+#fi
+
 
 snapshot()
 {
@@ -92,6 +91,7 @@ $db2path "update dbm cfg using  DFT_MON_LOCK OFF DFT_MON_SORT OFF DFT_MON_STMT O
 $db2path "update monitor switches using LOCK OFF SORT OFF STATEMENT OFF TABLE OFF TIMESTAMP OFF UOW OFF"  > /dev/null
 echo -e "${GREEN}DONE...${NORMAL}\n"
 
+db2info
 recommendations
 }
 
@@ -222,7 +222,7 @@ fi
 if [ $DBFC -eq 0 ];
 then
 echo  -e "[${GREEN}OK${NORMAL}]MAXFILOP"
-fi 
+fi
 }
 
 
@@ -293,7 +293,7 @@ echo -e "\n---------------------------------------------------------------------
 
 }
 
-db2info
+#db2info
 
 ########################Selecting database##########################################################
 
@@ -313,10 +313,10 @@ fi
 if [ -s snap.out ];
 then
 echo -e "\nSnapshot file ${YELLOW}snap.out${NORMAL} already exists${NORMAL}"
-read -p "Press ${YELLOW}'C'${NORMAL}(Continue) to conitnue with this file ,${YELLOW}'N'${NORMAL}(New) to take a new snapshot [C/N] : " value
+read -p "Press ${YELLOW}'C'${NORMAL}(Continue) to continue with this file ,${YELLOW}'N'${NORMAL}(New) to take a new snapshot [C/N] : " value
 
 
-case $value in 
+case $value in
 	C|c)
 	recommendations
 	;;
@@ -324,7 +324,7 @@ case $value in
 	snapshot
 	;;
 	*)
-	echo -e "Enter C or N , You have entered wrong option" 
+	echo -e "Enter C or N , You have entered wrong option"
 	echo -e "Exiting .... "
 	exit 1
 	;;
